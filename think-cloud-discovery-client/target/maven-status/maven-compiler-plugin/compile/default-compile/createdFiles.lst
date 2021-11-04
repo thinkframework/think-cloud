@@ -1,0 +1,17 @@
+io/github/thinkframework/cloud/client/discovery/DefaultDiscoveryClient$HeartBeatThread.class
+io/github/thinkframework/cloud/client/discovery/DefaultServiceInstance.class
+io/github/thinkframework/cloud/client/appinfo/Application.class
+io/github/thinkframework/cloud/client/discovery/ClientConfig.class
+io/github/thinkframework/cloud/client/discovery/AbstractInstanceConfig.class
+io/github/thinkframework/cloud/client/discovery/DefaultServiceInstance$Builder.class
+io/github/thinkframework/cloud/client/discovery/ServiceRegistryHttpClientImpl.class
+io/github/thinkframework/cloud/client/discovery/ServiceRegistryHttpClient.class
+io/github/thinkframework/cloud/client/discovery/DefaultDiscoveryClient$FetchThread.class
+io/github/thinkframework/cloud/client/discovery/AbstractServiceInstance.class
+io/github/thinkframework/cloud/client/appinfo/Applications.class
+io/github/thinkframework/cloud/client/discovery/InstanceConfig.class
+io/github/thinkframework/cloud/client/discovery/DefaultDiscoveryClient.class
+io/github/thinkframework/cloud/client/discovery/DefaultInstanceConfig.class
+io/github/thinkframework/cloud/client/discovery/DefaultClientConfig.class
+io/github/thinkframework/cloud/client/discovery/DefaultDiscoveryClient$RegisterThread.class
+io/github/thinkframework/cloud/client/appinfo/Lease.class

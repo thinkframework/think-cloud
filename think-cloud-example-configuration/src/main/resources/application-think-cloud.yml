@@ -1,0 +1,16 @@
+think: # 注册中心 EurekaServerBootstrap初始化时会获取environment,data-center对应的值
+    cloud:
+        environment: dev # 页面上显示的environment
+        data-center: dev # 页面上显示的data-center
+        instance: # 服务实例配置 EurekaInstanceConfigBean
+            lease-renewal-interval-in-seconds: 30 # 续约间隔
+            lease-expiration-duration-in-seconds: 90 # 租约到期时间,eureka 续约时wrong,实际会*2,180S
+        client: # 客户端配置 EurekaClientConfigBean
+            fetch-registry: true # 拉取注册表
+            register-with-eureka: true # 注册
+            registry-fetch-interval-seconds: 30 # 拉取注册表间隔
+            service-url: http://peer1:18761/ # 注册中心url
+        server: # 服务端配置 EurekaServerConfigBean
+            use-read-only-response-cache: false # 关闭只读响应缓存
+            enable-self-preservation: false # 关闭自我保护,服务实例续约与期待客户端续约间隔不一致将导致错误
+            expected-client-renewal-interval-seconds: 30 # 期待客户端续约间隔

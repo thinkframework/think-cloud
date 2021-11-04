@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.thinkframework.cloud.client.circuitbreaker.config.SpringCircuitBreakerConfiguration,\
+io.github.thinkframework.cloud.client.circuitbreaker.config.ThinkCircuitBreakerConfiguration

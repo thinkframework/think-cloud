@@ -1,0 +1,9 @@
+io/github/thinkframework/cloud/client/discovery/DiscoveryClient.class
+io/github/thinkframework/cloud/client/loadbalancer/LoadBalancerRequest.class
+io/github/thinkframework/cloud/client/loadbalancer/LoadBalancerClient.class
+io/github/thinkframework/cloud/client/loadbalancer/ServiceInstanceChooser.class
+io/github/thinkframework/cloud/client/circuitbreaker/CircuitBreaker.class
+io/github/thinkframework/cloud/client/ServiceInstance.class
+io/github/thinkframework/cloud/client/serviceregistry/Registration.class
+io/github/thinkframework/cloud/client/serviceregistry/ServiceRegistry.class
+io/github/thinkframework/cloud/client/commons/Lifecycle.class

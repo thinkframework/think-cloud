@@ -1,0 +1,5 @@
+io/github/thinkframework/cloud/client/serviceregistry/SpringServiceRegistry.class
+META-INF/spring-configuration-metadata.json
+io/github/thinkframework/cloud/client/serviceregistry/config/SpringRegistryConfiguration.class
+io/github/thinkframework/cloud/client/serviceregistry/config/ThinkRegistryConfiguration.class
+io/github/thinkframework/cloud/client/serviceregistry/SpringServiceConfig.class

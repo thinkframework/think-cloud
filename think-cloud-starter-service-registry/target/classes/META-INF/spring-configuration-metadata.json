@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "think.cloud.server",
+      "type": "io.github.thinkframework.cloud.client.serviceregistry.SpringServiceConfig",
+      "sourceType": "io.github.thinkframework.cloud.client.serviceregistry.SpringServiceConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "think.cloud.server.expected-client-renewal-interval-seconds",
+      "type": "java.lang.Long",
+      "sourceType": "io.github.thinkframework.cloud.client.serviceregistry.SpringServiceConfig"
+    }
+  ],
+  "hints": []
+}
