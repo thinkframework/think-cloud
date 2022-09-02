@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="think-cloud-commons" />
+        <module name="think-cloud-example-registry" />
+        <module name="think-cloud-circuit-breaker" />
+        <module name="think-cloud-starter-discovery-client" />
+        <module name="think-cloud-example-gateway" />
+        <module name="think-cloud-netty" />
+        <module name="think-cloud-load-balancer" />
+        <module name="think-cloud-gateway" />
+        <module name="think-cloud-starter-circuit-breaker" />
+        <module name="think-cloud-discovery-client" />
+        <module name="think-cloud-starter-service-registry" />
+        <module name="think-cloud-example-configuration" />
+        <module name="think-cloud-starter-gateway" />
+        <module name="think-cloud-starter-load-balancer" />
+        <module name="think-cloud-example-word" />
+        <module name="think-cloud-service-registry" />
+        <module name="think-cloud-example-hello" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

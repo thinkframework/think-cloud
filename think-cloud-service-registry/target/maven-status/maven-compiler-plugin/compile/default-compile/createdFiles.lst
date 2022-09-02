@@ -1,12 +1,12 @@
 io/github/thinkframework/cloud/client/serviceregistry/ThinkServiceRegistryBootStrap.class
 io/github/thinkframework/cloud/client/serviceregistry/util/MeasuredRate.class
 io/github/thinkframework/cloud/client/serviceregistry/util/MeasuredRate$1.class
-io/github/thinkframework/cloud/client/serviceregistry/DefaultServiceRegistry$ClearThread.class
 io/github/thinkframework/cloud/client/serviceregistry/web/rest/ApplicationsResource.class
 io/github/thinkframework/cloud/client/serviceregistry/web/rest/ServiceInstanceResource.class
 io/github/thinkframework/cloud/client/serviceregistry/DefaultServiceConfig.class
 io/github/thinkframework/cloud/client/serviceregistry/ServiceConfig.class
 io/github/thinkframework/cloud/client/serviceregistry/web/rest/impl/ServiceInstanceResourceImpl.class
+io/github/thinkframework/cloud/client/serviceregistry/DefaultServiceRegistry$EvictThread.class
 io/github/thinkframework/cloud/client/serviceregistry/DefaultServiceRegistry.class
 io/github/thinkframework/cloud/client/serviceregistry/web/rest/impl/ApplicationsResourceImpl.class
 io/github/thinkframework/cloud/client/serviceregistry/ExtendServiceRegistry.class

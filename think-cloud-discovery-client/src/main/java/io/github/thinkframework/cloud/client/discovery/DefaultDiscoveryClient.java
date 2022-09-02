@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -44,6 +45,11 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
      * value: 服务实例
      */
     private AtomicReference<Applications> registry = new AtomicReference<>();
+
+    /**
+     * 版本计数,确保并发情况下不被设置为老的版本
+     */
+    private AtomicLong version;
 
     /**
      * 服务注册客户端
@@ -151,12 +157,16 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
         public void run() {
             while (running) {
                 Applications local = null, remote = null; // 本地注册表, 远程注册表
+                Long currentVersion = version.get();
                 // CAS
-                do { // TODO 逻辑不能这么简单
+                // TODO 需要继续完善的逻辑
                     local = registry.get(); // 获取本地注册表
                     remote = client.getApplications(); // 获取远程注册表
-                } while (!registry.compareAndSet(local,remote)); // 本地注册表没被修改就设置为远程注册表
-
+                if (!version.compareAndSet(currentVersion,currentVersion +1)) { // CAS,无锁化,轻量级的版本控制
+                    registry.set(remote); // 本地注册表没被修改就设置为远程注册表
+                } else {
+                    logger.info("没有更新, 已被别的线程更新.");
+                }
                 try {
                     Thread.sleep(clientConfig.getRegistryFetchIntervalSeconds() * 1000);
                 } catch (InterruptedException e) {

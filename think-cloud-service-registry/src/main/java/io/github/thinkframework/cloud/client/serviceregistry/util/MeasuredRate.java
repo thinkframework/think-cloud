@@ -60,11 +60,11 @@ public class MeasuredRate {
         }
     }
 
-    public int count() {
+    public /* synchronized */ int count() {
         return lastBucket.get();
     }
 
-    public void increment(){
+    public /* synchronized */ void increment(){
         // FIXME 线程安全问题,最近修复
         currentBucket.incrementAndGet();
     }

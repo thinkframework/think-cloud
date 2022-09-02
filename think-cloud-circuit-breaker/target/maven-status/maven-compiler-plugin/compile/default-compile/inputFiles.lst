@@ -1,5 +1,5 @@
-/Users/lixiaobin/git/hdhxby/think-build/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/EnableThinkCircuitBreaker.java
-/Users/lixiaobin/git/hdhxby/think-build/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfig.java
-/Users/lixiaobin/git/hdhxby/think-build/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/ThinkCircuitBreakerFactory.java
-/Users/lixiaobin/git/hdhxby/think-build/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/DefaultCircuitBreaker.java
-/Users/lixiaobin/git/hdhxby/think-build/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfiguration.java
+/Users/lixiaobin/git/think-framework/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfig.java
+/Users/lixiaobin/git/think-framework/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/EnableThinkCircuitBreaker.java
+/Users/lixiaobin/git/think-framework/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/DefaultCircuitBreaker.java
+/Users/lixiaobin/git/think-framework/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfiguration.java
+/Users/lixiaobin/git/think-framework/think-cloud/think-cloud-circuit-breaker/src/main/java/io/github/thinkframework/cloud/client/circuitbreaker/ThinkCircuitBreakerFactory.java

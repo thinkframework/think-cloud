@@ -1,0 +1,5 @@
+io/github/thinkframework/cloud/client/LoadBanancerApplication.class
+io/github/thinkframework/cloud/client/loadbalance/MockLoadBalancerClient$1.class
+io/github/thinkframework/cloud/client/loadbalance/ThinkLoadBalancerTest.class
+io/github/thinkframework/cloud/client/loadbalance/SpringLoadBalancerTest.class
+io/github/thinkframework/cloud/client/loadbalance/MockLoadBalancerClient.class

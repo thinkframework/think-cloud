@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,9 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
 
     private List<DefaultServiceInstance> recentChanges = new LinkedList<>();
 
+    private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private ReentrantReadWriteLock.ReadLock rea = readWriteLock.readLock();
+    private ReentrantReadWriteLock.WriteLock write = readWriteLock.writeLock();
     /**
      * 最后一分钟的请求数
      */
@@ -62,12 +66,13 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
     }
 
     public void init(){
-        Thread cleanThread = new Thread(new ClearThread());
+        Thread cleanThread = new Thread(new EvictThread());
+        cleanThread.setDaemon(true); // 切换位守护线程
         cleanThread.start();
     }
 
     @Override
-    public DefaultServiceInstance register(DefaultServiceInstance registration) {
+    public /* synchronized */ DefaultServiceInstance register(DefaultServiceInstance registration) {
         log.debug("服务注册:{}", registration);
         registration.getLease().setRegistrationTimestamp(System.currentTimeMillis()); // 注册时间
         registration.getLease().setLastRenewalTimestamp(System.currentTimeMillis()); // 最后一次续约时间
@@ -84,7 +89,7 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
     }
 
     @Override
-    public void deregister(DefaultServiceInstance registration) {
+    public /* synchronized */ void deregister(DefaultServiceInstance registration) {
         log.debug("服务注销:{}", registration);
 
         registration.getLease().setEvictionTimestamp(System.currentTimeMillis()); // 摘除时间
@@ -107,18 +112,18 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
     }
 
     @Override
-    public void setStatus(DefaultServiceInstance registration, String status) {
+    public /* synchronized */ void setStatus(DefaultServiceInstance registration, String status) {
 
     }
 
     @Override
-    public <T> T getStatus(DefaultServiceInstance registration) {
+    public /* synchronized */ <T> T getStatus(DefaultServiceInstance registration) {
         return null;
     }
 
 
     @Override
-    public DefaultServiceInstance renew(DefaultServiceInstance registration) {
+    public /* synchronized */ DefaultServiceInstance renew(DefaultServiceInstance registration) {
         log.debug("服务注册:{}", registration);
         registration.getLease().setRegistrationTimestamp(System.currentTimeMillis()); // 注册时间
         registration.getLease().setLastRenewalTimestamp(System.currentTimeMillis()); // 最后一次续约时间
@@ -139,7 +144,7 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
      *
      * @return
      */
-    public Applications getApplications() {
+    public /* synchronized */ Applications getApplications() {
         Applications applications = new Applications(registry.entrySet().stream()
             .collect(Collectors.toMap(Map.Entry::getKey,
                 entry -> new Application(entry.getValue()))));
@@ -149,7 +154,7 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
     /**
      * 增量更新
      */
-    public Applications getDelta() {
+    public /* synchronized */ Applications getDelta() {
         Applications applications = new Applications(recentChanges.stream()
             .collect(Collectors.groupingBy(DefaultServiceInstance::getServiceId,
                 Collectors.toMap(DefaultServiceInstance::getInstanceId, Function.identity())))
@@ -174,12 +179,25 @@ public class DefaultServiceRegistry implements ServiceRegistry<DefaultServiceIns
         return running;
     }
 
-    class ClearThread implements Runnable {
+    /**
+     * 摘除过期实例
+     */
+    public /* synchronized */  void evict(){
+        // TODO 自我保护
+        recentChanges.removeAll(recentChanges.stream() // 移除所有过期的数据
+                .filter(defaultServiceInstance -> System.currentTimeMillis()  // - 当前时间
+                        - defaultServiceInstance.getLease().getLastRenewalTimestamp() // 最后续约时间
+                        > defaultServiceInstance.getLeaseExpirationDurationInSeconds()) // 租约到期持续时间
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * 服务摘除
+     */
+    class EvictThread implements Runnable {
         @Override
         public void run() {
-            recentChanges.removeAll(recentChanges.stream().filter(defaultServiceInstance -> defaultServiceInstance.getLeaseRenewalIntervalInSeconds()
-                        - System.currentTimeMillis() > defaultServiceInstance.getLeaseExpirationDurationInSeconds())
-                    .collect(Collectors.toList())); // 移除所有过期的数据
+            evict();
         }
     }
 }
