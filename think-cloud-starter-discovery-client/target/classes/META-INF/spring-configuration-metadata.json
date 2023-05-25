@@ -15,8 +15,7 @@
     {
       "name": "think.cloud.client.registry-fetch-interval-seconds",
       "type": "java.lang.Long",
-      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringClientConfig",
-      "defaultValue": 0
+      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringClientConfig"
     },
     {
       "name": "think.cloud.client.service-url",
@@ -36,14 +35,12 @@
     {
       "name": "think.cloud.instance.lease-expiration-duration-in-seconds",
       "type": "java.lang.Long",
-      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringInstanceConfig",
-      "defaultValue": 0
+      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringInstanceConfig"
     },
     {
       "name": "think.cloud.instance.lease-renewal-interval-in-seconds",
       "type": "java.lang.Long",
-      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringInstanceConfig",
-      "defaultValue": 0
+      "sourceType": "io.github.thinkframework.cloud.client.discovery.SpringInstanceConfig"
     },
     {
       "name": "think.cloud.instance.metadata",

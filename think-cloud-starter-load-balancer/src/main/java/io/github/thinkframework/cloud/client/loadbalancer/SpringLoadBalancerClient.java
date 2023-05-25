@@ -3,6 +3,7 @@ package io.github.thinkframework.cloud.client.loadbalancer;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerRequest;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerUriTools;
+import org.springframework.cloud.client.loadbalancer.Request;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -94,6 +95,11 @@ public class SpringLoadBalancerClient implements org.springframework.cloud.clien
                 return serviceInstance.getMetadata();
             }
         };
+    }
+
+    @Override
+    public <T> ServiceInstance choose(String serviceId, Request<T> request) {
+        return null;
     }
 
 

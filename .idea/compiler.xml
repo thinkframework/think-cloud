@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="think-cloud-commons" />
         <module name="think-cloud-example-registry" />
+        <module name="think-cloud-test" />
         <module name="think-cloud-circuit-breaker" />
         <module name="think-cloud-starter-discovery-client" />
         <module name="think-cloud-example-gateway" />

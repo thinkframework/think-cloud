@@ -23,12 +23,13 @@
         <module>think-cloud-starter-load-balancer</module>
         <module>think-cloud-starter-circuit-breaker</module>
         <module>think-cloud-starter-gateway</module>
+        <module>think-cloud-test</module>
         <module>think-cloud-example</module>
     </modules>
 
     <properties>
-        <spring-boot.version>2.3.11.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+        <spring-boot.version>2.6.14</spring-boot.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
     </properties>
 
     <dependencyManagement>
