@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.thinkframework.cloud.client.discovery.config.SpringDiscoveryClientConfiguration,\
+io.github.thinkframework.cloud.client.discovery.config.ThinkDiscoveryClientConfiguration

@@ -1,8 +1,0 @@
-server:
-    port: 18081
-
-spring:
-    application:
-        name: hello
-    profiles:
-        include: think-cloud

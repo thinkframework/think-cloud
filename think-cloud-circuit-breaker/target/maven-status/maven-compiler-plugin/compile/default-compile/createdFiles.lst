@@ -1,6 +1,0 @@
-io/github/thinkframework/cloud/client/circuitbreaker/EnableThinkCircuitBreaker.class
-io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfig.class
-io/github/thinkframework/cloud/client/circuitbreaker/ThinkCircuitBreakerFactory.class
-io/github/thinkframework/cloud/client/circuitbreaker/config/ThinkCircuitBreakerConfiguration.class
-io/github/thinkframework/cloud/client/circuitbreaker/ThinkCircuitBreakerFactory$ThinkCircuitBreakerConfigBuilder.class
-io/github/thinkframework/cloud/client/circuitbreaker/DefaultCircuitBreaker.class

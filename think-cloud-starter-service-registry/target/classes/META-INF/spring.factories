@@ -1,4 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.thinkframework.cloud.client.serviceregistry.config.SpringRegistryConfiguration,\
-io.github.thinkframework.cloud.client.serviceregistry.config.ThinkRegistryConfiguration
-
