@@ -17,7 +17,7 @@
     <modules>
         <module>think-cloud-example-configuration</module>
         <module>think-cloud-example-registry</module>
-        <module>think-cloud-example-word</module>
+        <module>think-cloud-example-world</module>
         <module>think-cloud-example-hello</module>
         <module>think-cloud-example-gateway</module>
     </modules>

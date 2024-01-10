@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("api/service-instances")
 public class ServiceInstanceResourceImpl implements ServiceInstanceResource {
 
     @Resource
@@ -19,28 +18,26 @@ public class ServiceInstanceResourceImpl implements ServiceInstanceResource {
         this.registry = registry;
     }
 
-    @Override
     @PostMapping
+    @Override
     public ResponseEntity<DefaultServiceInstance> register(@RequestBody DefaultServiceInstance serviceInstance) {
         return ResponseEntity.ok(registry.register(serviceInstance));
     }
-
-    @Override
     @DeleteMapping
+    @Override
     public ResponseEntity<Void> deregister(@RequestBody DefaultServiceInstance serviceInstance) {
         registry.deregister(serviceInstance);
         return ResponseEntity.noContent().build();
     }
 
-    @Override
     @PutMapping
+    @Override
     public ResponseEntity<DefaultServiceInstance> renew(@RequestBody DefaultServiceInstance serviceInstance) {
         return ResponseEntity.ok(registry.renew(serviceInstance));
     }
 
-
-    @Override
     @GetMapping("{instanceId}")
+    @Override
     public ResponseEntity<DefaultServiceInstance> findById(@PathVariable("instanceId") String instanceId){
         throw new RuntimeException("未实现的接口");
     }

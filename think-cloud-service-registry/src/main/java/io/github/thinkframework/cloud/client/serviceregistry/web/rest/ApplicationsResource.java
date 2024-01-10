@@ -4,7 +4,9 @@ import io.github.thinkframework.cloud.client.ServiceInstance;
 import io.github.thinkframework.cloud.client.appinfo.Application;
 import io.github.thinkframework.cloud.client.appinfo.Applications;
 import io.github.thinkframework.cloud.client.discovery.DefaultServiceInstance;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
@@ -30,6 +32,5 @@ public interface ApplicationsResource {
      */
     Application getApplication(String serviceId);
 
-
-    ServiceInstance getApplication(@PathVariable(name = "serviceId") String serviceId, @PathVariable("instanceId") String instanceId);
+    ServiceInstance getApplication(String serviceId, String instanceId);
 }

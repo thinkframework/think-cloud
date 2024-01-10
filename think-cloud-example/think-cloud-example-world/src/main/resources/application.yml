@@ -1,0 +1,15 @@
+server:
+    port: 18082
+
+spring:
+    application:
+        name: world
+    profiles:
+        include: think-cloud
+think:
+    cloud:
+        instance:
+            instance-id: ${spring.application.name}
+            service-id: ${spring.application.name}
+            port: ${server.port}
+            host: localhost

@@ -38,12 +38,12 @@ public interface ServiceRegistry<R extends Registration> {
      */
     void setStatus(R registration, String status);
 
-/**
- * Gets the status of a particular registration.
- * @param registration The registration to query.
- * @param <T> The type of the status.
- * @return The status of the registration.
- * @see org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint
- */
+    /**
+     * Gets the status of a particular registration.
+     * @param registration The registration to query.
+     * @param <T> The type of the status.
+     * @return The status of the registration.
+     * @see org.springframework.cloud.client.serviceregistry.endpoint.ServiceRegistryEndpoint
+     */
     <T> T getStatus(R registration);
 }

@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
+@RequestMapping("api/think")
 @RestController
-@RequestMapping("api")
 public class ApplicationsResourceImpl implements ApplicationsResource {
 
     @Resource
@@ -27,8 +26,8 @@ public class ApplicationsResourceImpl implements ApplicationsResource {
     /**
      * 注册
      */
-    @Override
     @GetMapping("applications")
+    @Override
     public Applications getApplications() {
         return registry.getApplications();
     }
@@ -37,22 +36,21 @@ public class ApplicationsResourceImpl implements ApplicationsResource {
     /**
      * 注册
      */
-    @Override
     @GetMapping("applications-delta")
+    @Override
     public Applications getDelta() {
         return registry.getDelta();
     }
 
-
-    @Override
     @GetMapping("applications/{serviceId}")
+    @Override
     public Application getApplication(@PathVariable(name = "serviceId") String serviceId) {
         return registry.getApplications()
             .getApplications().get(serviceId);
     }
 
-    @Override
     @GetMapping("applications/{serviceId}/service-instances/{instanceId}")
+    @Override
     public ServiceInstance getApplication(@PathVariable(name = "serviceId") String serviceId, @PathVariable("instanceId") String instanceId) {
         return registry.getApplications()
             .getApplications().get(serviceId)

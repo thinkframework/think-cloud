@@ -1,9 +1,7 @@
 package com.hdhxby.eshop;
 
-import io.github.thinkframework.cloud.client.circuitbreaker.EnableThinkCircuitBreaker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**

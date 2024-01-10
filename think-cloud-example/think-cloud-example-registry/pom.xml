@@ -29,18 +29,14 @@
             <groupId>io.github.thinkframework</groupId>
             <artifactId>think-cloud-starter-service-registry</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.github.thinkframework</groupId>
-            <artifactId>think-cloud-starter-discovery-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.thinkframework</groupId>
-            <artifactId>think-cloud-starter-load-balancer</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.thinkframework</groupId>
-            <artifactId>think-cloud-starter-circuit-breaker</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.github.thinkframework</groupId>-->
+<!--            <artifactId>think-cloud-starter-load-balancer</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.github.thinkframework</groupId>-->
+<!--            <artifactId>think-cloud-starter-circuit-breaker</artifactId>-->
+<!--        </dependency>-->
         <!-- 三方库 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -48,11 +44,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

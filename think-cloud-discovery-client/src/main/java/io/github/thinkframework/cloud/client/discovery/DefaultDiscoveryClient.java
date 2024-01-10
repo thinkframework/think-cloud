@@ -3,12 +3,11 @@ package io.github.thinkframework.cloud.client.discovery;
 import io.github.thinkframework.cloud.client.ServiceInstance;
 import io.github.thinkframework.cloud.client.appinfo.Applications;
 import io.github.thinkframework.cloud.client.serviceregistry.Registration;
+import io.github.thinkframework.cloud.client.serviceregistry.ServiceRegistryClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -49,19 +48,19 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
     /**
      * 版本计数,确保并发情况下不被设置为老的版本
      */
-    private AtomicLong version;
+    private AtomicLong version = new AtomicLong(0); // FIXME 要不要初始化为0
 
     /**
      * 服务注册客户端
      */
-    private ServiceRegistryHttpClient client;
+    private ServiceRegistryClient client;
 
     private Registration registration;
 
     public DefaultDiscoveryClient(ClientConfig clientConfig,
                                   InstanceConfig instanceConfig,
                                   Registration registration,
-                                  ServiceRegistryHttpClient client) throws RuntimeException {
+                                  ServiceRegistryClient client) throws RuntimeException {
 
         running = true; // important 核心启动逻辑,volatile保证可见性
 
@@ -70,11 +69,11 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
         this.client = client;
         this.registration = registration;
         // 注册
-        Thread register = new Thread(threadGroup, new RegisterThread());
+        Thread register = new Thread(threadGroup, new RegisterThread(),"Think-Cloud-Reigster-Thread");
         register.start();
 
         // 拉取注册表
-        Thread fetch = new Thread(threadGroup, new FetchThread());
+        Thread fetch = new Thread(threadGroup, new FetchThread(),"Think-Cloud-Feth-Thread");
         fetch.setDaemon(true); // 守护线程
         fetch.start();
 
@@ -87,7 +86,7 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
         }
 
         // 心跳
-        Thread heartBeat = new Thread(threadGroup, new HeartBeatThread());
+        Thread heartBeat = new Thread(threadGroup, new HeartBeatThread(),"Think-Cloud-Heart-Beat-Thread");
         heartBeat.setDaemon(true); // 守护线程
         heartBeat.start();
 
@@ -100,7 +99,7 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
 
     @Override
     public String description() {
-        return null;
+        return "测试";
     }
 
     @Override
@@ -125,8 +124,12 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
          */
         @Override
         public void run() {
-            client.register(registration);
-            logger.debug("注册完成.");
+            try {
+                client.register(registration);
+            } catch (RuntimeException e) {
+                // 服务端可能还没启动成功, 等待服务端启动。
+                logger.debug("注冊失敗", e);
+            }
         }
     }
 
@@ -138,7 +141,12 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
         @Override
         public void run() {
             while (running) {
-                client.renew(registration); // 续约
+                try {
+                    client.renew(registration); // 续约
+                } catch (RuntimeException e) {
+                    // 服务端可能还没启动成功, 等待服务端启动。
+                    logger.debug("续约失敗", e);
+                }
                 try {
                     Thread.sleep(instanceConfig.getLeaseRenewalIntervalInSeconds() * 1000);
                 } catch (InterruptedException e) {
@@ -161,8 +169,13 @@ public class DefaultDiscoveryClient implements DiscoveryClient {
                 // CAS
                 // TODO 需要继续完善的逻辑
                     local = registry.get(); // 获取本地注册表
+                try {
                     remote = client.getApplications(); // 获取远程注册表
-                if (!version.compareAndSet(currentVersion,currentVersion +1)) { // CAS,无锁化,轻量级的版本控制
+                } catch (RuntimeException e) {
+                    // TODO 注册中心未启动的情况下会走到自己,排序
+                    logger.error("拉取注册表失败", e);
+                }
+                if (version.compareAndSet(currentVersion,currentVersion +1)) { // CAS,无锁化,轻量级的版本控制
                     registry.set(remote); // 本地注册表没被修改就设置为远程注册表
                 } else {
                     logger.info("没有更新, 已被别的线程更新.");

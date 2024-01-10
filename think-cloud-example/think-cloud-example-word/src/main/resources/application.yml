@@ -1,8 +1,0 @@
-server:
-    port: 18082
-
-spring:
-    application:
-        name: word
-    profiles:
-        include: think-cloud

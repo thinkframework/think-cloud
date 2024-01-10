@@ -33,7 +33,9 @@ public class DefaultLoadBalancerClient implements LoadBalancerClient {
 
     @Override
     public URI reconstructURI(ServiceInstance instance, URI original) {
-        return URI.create("");
+        String requestUri= original.toString();
+        requestUri = requestUri.replace(original.getHost()+":"+original.getPort()+"/"+instance.getServiceId(),instance.getHost()+":"+instance.getPort());
+        return URI.create(requestUri);
     }
 
     @Override

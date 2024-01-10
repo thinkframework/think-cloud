@@ -1,6 +1,7 @@
 package io.github.thinkframework.cloud.client;
 
 import io.github.thinkframework.cloud.client.discovery.*;
+import io.github.thinkframework.cloud.client.serviceregistry.ServiceRegistryClient;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class DiscoveryClientTest {
         config.setMetadata(new HashMap<>());
         DefaultServiceInstance instance = new DefaultServiceInstance.Builder().config(config).build();
 //        ThinkDiscoveryClient discoveryClient = new ThinkDiscoveryClientImpl();
-        ServiceRegistryHttpClient client = new MockServiceRegistryHttpClient(instance);
+        ServiceRegistryClient client = new MockServiceRegistryClient(instance);
 
         ClientConfig clientConfig = new MockClientConfig();
         InstanceConfig instanceConfig = new MockInstanceConfig();
